@@ -1,5 +1,8 @@
-/* Color Palette & Typography Variables */
+/* ==========================================================================
+   1. COLOR PALETTE & TYPOGRAPHY VARIABLES
+   ========================================================================== */
 :root {
+  /* Color Palette */
   --primary-color: #1e3a8a;      /* Deep Navy */
   --accent-color: #2563eb;       /* Royal Blue */
   --text-dark: #1f2937;          /* Dark Charcoal */
@@ -7,12 +10,15 @@
   --bg-light: #f8fafc;           /* Soft Off-White */
   --border-color: #e5e7eb;       /* Subtle Border */
   --white: #ffffff;
-  
+
+  /* Typography */
   --font-heading: 'Montserrat', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
 
-/* Global Reset & Base Styles */
+/* ==========================================================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -29,20 +35,93 @@ body {
   flex-direction: column;
 }
 
-/* Responsive Navigation Bar */
+/* Main Layout Container */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  flex: 1;
+}
+
+/* Headings & General Text */
+.page-title {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.hero-heading {
+  font-family: var(--font-heading);
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.hero-text,
+.section-description {
+  color: var(--text-dark);
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 2rem auto;
+}
+
+.section-description {
+  color: var(--text-light);
+}
+
+/* Shared Buttons */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color);
+}
+
+/* ==========================================================================
+   3. NAVIGATION BAR (DESKTOP & JS MOBILE HAMBURGER)
+   ========================================================================== */
 .navbar {
   background-color: var(--white);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  padding: 1rem 1.5rem;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+}
+
+.nav-brand {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 1.1rem;
 }
 
 .nav-menu {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 1.5rem;
   list-style: none;
-  flex-wrap: wrap;
 }
 
 .nav-link {
@@ -57,51 +136,18 @@ body {
   color: var(--accent-color);
 }
 
-/* Main Container Layout */
-.container {
-  width: 90%;
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: var(--white);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  flex: 1;
+/* Hamburger Menu Button (Hidden on Desktop) */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
-/* Headings & Text */
-.page-title {
-  font-family: var(--font-heading);
-  color: var(--primary-color);
-  font-size: 2.25rem;
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
-.section-description {
-  color: var(--text-light);
-  font-size: 1.1rem;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-/* Home Page Elements */
-.hero-heading {
-  font-family: var(--font-heading);
-  color: var(--accent-color);
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.hero-text {
-  color: var(--text-dark);
-  font-size: 1.125rem;
-  max-width: 650px;
-  margin: 0 auto 2rem auto;
-  text-align: center;
-}
-
+/* ==========================================================================
+   4. HOME PAGE STYLES
+   ========================================================================== */
 .main-logo {
   display: block;
   max-width: 100%;
@@ -111,7 +157,9 @@ body {
   margin: 1rem auto 0 auto;
 }
 
-/* Organizations Grid & Cards */
+/* ==========================================================================
+   5. ORGANIZATIONS PAGE STYLES
+   ========================================================================== */
 .org-grid {
   list-style: none;
   display: grid;
@@ -167,23 +215,8 @@ body {
   text-decoration: underline;
 }
 
-/* Site Footer */
-.site-footer {
-  background-color: var(--primary-color);
-  color: var(--white);
-  text-align: center;
-  padding: 1.5rem 1rem;
-  margin-top: auto;
-}
-
-.site-footer p {
-  color: var(--white);
-  font-size: 0.875rem;
-  margin: 0;
-}
-
 /* ==========================================================================
-   Projects Component Styles
+   6. PROJECTS PAGE STYLES
    ========================================================================== */
 .project-list {
   list-style: none;
@@ -224,25 +257,8 @@ body {
   margin: 0;
 }
 
-.btn-primary {
-  display: inline-block;
-  background-color: var(--accent-color);
-  color: var(--white);
-  text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: background-color 0.2s ease;
-}
-
-.btn-primary:hover {
-  background-color: var(--primary-color);
-}
-
 /* ==========================================================================
-   Categories Component Styles (Filter Grid)
+   7. CATEGORIES PAGE STYLES
    ========================================================================== */
 .category-grid {
   list-style: none;
@@ -288,21 +304,89 @@ body {
   font-weight: 600;
 }
 
+/* ==========================================================================
+   8. FOOTER STYLES
+   ========================================================================== */
+.site-footer {
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin-top: auto;
+}
 
-/* Mobile Responsive Adjustments (< 600px) */
-@media (max-width: 600px) {
-  .navbar {
-    padding: 0.75rem 1rem;
+.site-footer p {
+  color: var(--white);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* ==========================================================================
+   9. MEDIA QUERIES (MOBILE RESPONSIVENESS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Navigation & Hamburger */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    z-index: 10;
+  }
+
+  .hamburger .bar {
+    height: 3px;
+    width: 100%;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
   }
 
   .nav-menu {
-    gap: 0.75rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  .nav-item {
+    width: 100%;
+    text-align: center;
   }
 
   .nav-link {
-    font-size: 0.9rem;
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
   }
 
+  /* JavaScript Active States */
+  .nav-menu.active {
+    max-height: 300px;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+  }
+
+  /* Page Layouts & Elements */
   .container {
     width: 95%;
     margin: 1rem auto;
@@ -311,11 +395,6 @@ body {
 
   .page-title {
     font-size: 1.75rem;
-  }
-
-  .section-description {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
   }
 
   .org-grid {
@@ -349,5 +428,61 @@ body {
 
   .category-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   1. TABLET & SMALL LAPTOPS (769px - 1024px)
+   ========================================================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    width: 92%;
+    padding: 1.75rem;
+  }
+
+  /* Transition organization grid to 2 columns on tablets */
+  .org-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Compact project layout for medium screens */
+  .project-card {
+    padding: 1.25rem;
+  }
+
+  .nav-menu {
+    gap: 1rem;
+  }
+}
+
+/* ==========================================================================
+   2. SMALL MOBILE SCREENS (< 480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-brand {
+    font-size: 0.95rem;
+  }
+
+  /* Stack partner cards vertically on tiny displays */
+  .org-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .org-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-heading {
+    font-size: 1.2rem;
   }
 }

@@ -32,22 +32,26 @@ app.set('views', path.join(__dirname, 'src/views'));
   */
 app.get('/', async (req, res) => {
     const title = 'Home';
-    res.render('home', { title });
+    const description = 'Welcome to the CSE 340 Service Network';
+    res.render('home', { title, description });
 });
 
 app.get('/organizations', async (req, res) => {
     const title = 'Our Partner Organizations';
-    res.render('organizations', { title });
+    const description = 'Discover our network of partner organizations';
+    res.render('organizations', { title, description });
 });
 
 app.get('/projects', async (req, res) => {
     const title = 'Service Projects';
-    res.render('projects', { title });
+    const description = 'Explore our range of service projects';
+    res.render('projects', { title, description });
 });
 
 app.get('/categories', async (req, res) => {
     const title = 'Service Project Categories';
-    res.render('categories', { title });
+    const description = 'Browse service projects by category';
+    res.render('categories', { title, description });
 });
 
 app.listen(PORT, () => {
