@@ -73,7 +73,8 @@ body {
   margin: 0 auto 2rem auto;
 }
 
-.section-description {
+.section-description,
+.project-date {
   color: var(--text-light);
 }
 

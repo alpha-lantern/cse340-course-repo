@@ -3,27 +3,21 @@
     <h1 class="page-title"><%= title %></h1>
     <h2 class="hero-heading">Upcoming Service Projects</h2>
     <ul class="project-list">
-        <li class="project-card">
-            <div class="project-content">
-                <h3 class="project-title">Park Cleanup</h3>
-                <p class="project-desc">Join us to clean up local parks and make them beautiful!</p>
-            </div>
-            <a href="#" class="btn-primary">Learn More</a>
-        </li>
-        <li class="project-card">
-            <div class="project-content">
-                <h3 class="project-title">Food Drive</h3>
-                <p class="project-desc">Help collect and distribute food to those in need.</p>
-            </div>
-            <a href="#" class="btn-primary">Learn More</a>
-        </li>
-        <li class="project-card">
-            <div class="project-content">
-                <h3 class="project-title">Community Tutoring</h3>
-                <p class="project-desc">Volunteer to tutor students in various subjects.</p>
-            </div>
-            <a href="#" class="btn-primary">Learn More</a>
-        </li>
+        <% projects.forEach(project => { %>
+            <li class="project-card">
+                <div class="project-content">
+                    <p class="project-date"><%= project.project_date.toLocaleDateString('es-ES', { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    }) %>:</p>
+                    <h3 class="project-title"><%= project.title %> (<%= project.organization_name %>)</h3>
+                    <!-- <p class="project-desc"><%= project.description %></p> -->
+                </div>
+                <a href="#" class="btn-primary">Learn More</a>
+            </li>
+        <% }); %>
     </ul>
 </main>
 <%- include('partials/footer') %>
