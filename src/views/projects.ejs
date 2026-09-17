@@ -1,21 +1,29 @@
 <%- include('partials/header') %>
 <main class="container">
     <h1 class="page-title"><%= title %></h1>
-    <h2 class="hero-heading">Upcoming Service Projects</h2>
+    
     <ul class="project-list">
         <% projects.forEach(project => { %>
             <li class="project-card">
                 <div class="project-content">
-                    <p class="project-date"><%= project.project_date.toLocaleDateString('es-ES', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                    }) %>:</p>
-                    <h3 class="project-title"><%= project.title %> (<%= project.organization_name %>)</h3>
-                    <!-- <p class="project-desc"><%= project.description %></p> -->
+                    <p class="project-date">
+                        📅 <%= project.project_date.toLocaleDateString('es-ES', { 
+                            weekday: 'long', 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        }) %>
+                    </p>
+                    
+                    <h3 class="project-title">
+                        <a href="/project/<%= project.project_id %>" class="project-link">
+                            <%= project.title %></a>
+                        </h3>
+
+                    <p class="project-org">
+                        Hosted by <a href="/organization/<%= project.organization_id %>" class="org-inline-link"><%= project.organization_name %></a>
+                    </p>
                 </div>
-                <a href="#" class="btn-primary">Learn More</a>
             </li>
         <% }); %>
     </ul>
