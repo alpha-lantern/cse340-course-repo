@@ -1,4 +1,12 @@
 -- ========================================
+-- Drop Tables (in reverse order to avoid foreign key conflicts)
+-- ========================================
+DROP TABLE IF EXISTS project_categories CASCADE;
+DROP TABLE IF EXISTS service_projects CASCADE;
+DROP TABLE IF EXISTS category CASCADE;
+DROP TABLE IF EXISTS organization CASCADE;
+
+-- ========================================
 -- Organization Table
 -- ========================================
 CREATE TABLE organization (
@@ -150,7 +158,7 @@ VALUES
         'Harvest Festival & Produce Drive', 
         'Harvesting summer yields and distributing fresh produce directly to local food banks.', 
         'Market Square, Downtown', 
-        '2027-03-30'
+        '2027-02-28'
     ),
 
     -- UnityServe Volunteers (Organization ID: 3)
