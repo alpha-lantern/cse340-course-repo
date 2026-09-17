@@ -2,18 +2,26 @@
    1. COLOR PALETTE & TYPOGRAPHY VARIABLES
    ========================================================================== */
 :root {
-  /* Color Palette */
-  --primary-color: #1e3a8a;      /* Deep Navy */
-  --accent-color: #2563eb;       /* Royal Blue */
+  /* Primary & Accent Palette */
+  --primary-color: #1e3a8a;      /* Deep Navy (Contrast ratio > 10:1 on white) */
+  --accent-color: #1d4ed8;       /* Strong Royal Blue (Contrast ratio > 4.5:1 on white) */
+  --accent-hover: #1e40af;       /* Hover Dark Blue */
+  
+  /* Text Colors */
   --text-dark: #1f2937;          /* Dark Charcoal */
-  --text-light: #6b7280;         /* Muted Gray */
+  --text-light: #4b5563;         /* Dark Muted Gray (WCAG AA Compliant) */
+  
+  /* Surface & Background Colors */
   --bg-light: #f8fafc;           /* Soft Off-White */
-  --border-color: #e5e7eb;       /* Subtle Border */
+  --border-color: #d1d5db;       /* Clear Neutral Border */
   --white: #ffffff;
+  
+  /* Accessibility Controls */
+  --focus-ring: #2563eb;
 
   /* Typography */
-  --font-heading: 'Montserrat', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* ==========================================================================
@@ -33,6 +41,12 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Focus Indicator for Keyboard Accessibility */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 /* Main Layout Container */
@@ -87,13 +101,17 @@ body {
   padding: 0.6rem 1.2rem;
   border-radius: 6px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-color);
+  background-color: var(--accent-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
 }
 
 /* ==========================================================================
@@ -209,6 +227,7 @@ body {
   color: var(--accent-color);
   text-decoration: none;
   font-size: 0.95rem;
+  font-weight: 500;
   word-break: break-all;
 }
 
@@ -230,7 +249,7 @@ body {
 .project-card {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 1.5rem;
   border: 1px solid var(--border-color);
   border-left: 5px solid var(--accent-color);
@@ -245,17 +264,50 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-.project-title {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  color: var(--primary-color);
-  margin-bottom: 0.25rem;
+.project-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.project-desc {
-  color: var(--text-dark);
-  font-size: 0.975rem;
-  margin: 0;
+.project-date {
+  font-size: 0.875rem;
+  text-transform: capitalize;
+}
+
+.project-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+/* Embedded Title Link Styling */
+.project-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.project-link:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* Separated Organization Label Styling */
+.project-org {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-top: 0.2rem;
+}
+
+.org-inline-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.org-inline-link:hover {
+  text-decoration: underline;
 }
 
 /* ==========================================================================
@@ -284,7 +336,7 @@ body {
 .category-card:hover {
   background-color: var(--white);
   border-color: var(--accent-color);
-  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 4px 8px rgba(29, 78, 216, 0.12);
   transform: translateY(-2px);
 }
 
@@ -298,15 +350,93 @@ body {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  background-color: rgba(37, 99, 235, 0.1);
-  color: var(--accent-color);
+  background-color: var(--primary-color);
+  color: var(--white);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-weight: 600;
 }
 
 /* ==========================================================================
-   8. FOOTER STYLES
+   8. SINGLE PROJECT DETAIL STYLES
+   ========================================================================== */
+.project-detail {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.project-detail-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  border-top: 6px solid var(--accent-color);
+  padding: 2.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.project-detail-title {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  color: var(--primary-color);
+  line-height: 1.3;
+}
+
+.project-detail-desc {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  line-height: 1.7;
+}
+
+.project-meta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  margin: 0.5rem 0;
+}
+
+.project-detail-date,
+.project-detail-location {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: capitalize;
+}
+
+.org-link-wrapper {
+  text-decoration: none;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.project-detail-org {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--accent-color);
+  transition: color 0.2s ease;
+}
+
+.org-link-wrapper:hover .project-detail-org {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.project-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   9. FOOTER STYLES
    ========================================================================== */
 .site-footer {
   background-color: var(--primary-color);
@@ -323,10 +453,32 @@ body {
 }
 
 /* ==========================================================================
-   9. MEDIA QUERIES (MOBILE RESPONSIVENESS)
+   10. MEDIA QUERIES & RESPONSIVENESS
    ========================================================================== */
+
+/* Tablet & Medium Screen Layouts (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    width: 92%;
+    padding: 1.75rem;
+  }
+
+  .org-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-card {
+    padding: 1.25rem;
+  }
+
+  .nav-menu {
+    gap: 1rem;
+  }
+}
+
+/* Mobile Devices (< 768px) */
 @media (max-width: 768px) {
-  /* Navigation & Hamburger */
+  /* Mobile Navigation & Hamburger */
   .hamburger {
     display: flex;
     flex-direction: column;
@@ -370,7 +522,7 @@ body {
     border-bottom: 1px solid var(--border-color);
   }
 
-  /* JavaScript Active States */
+  /* Active JS Hamburger Mobile Menu State */
   .nav-menu.active {
     max-height: 300px;
   }
@@ -387,7 +539,7 @@ body {
     transform: translateY(-8.5px) rotate(-45deg);
   }
 
-  /* Page Layouts & Elements */
+  /* Mobile Content Scaling */
   .container {
     width: 95%;
     margin: 1rem auto;
@@ -401,19 +553,6 @@ body {
   .org-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
-  }
-
-  .org-card {
-    flex-direction: row;
-    text-align: left;
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .org-logo {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 0;
   }
 
   .project-card {
@@ -430,35 +569,22 @@ body {
   .category-grid {
     grid-template-columns: 1fr;
   }
-}
 
-/* ==========================================================================
-   1. TABLET & SMALL LAPTOPS (769px - 1024px)
-   ========================================================================== */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .container {
-    width: 92%;
-    padding: 1.75rem;
+  .project-detail-card {
+    padding: 1.5rem;
   }
 
-  /* Transition organization grid to 2 columns on tablets */
-  .org-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .project-detail-title {
+    font-size: 1.5rem;
   }
 
-  /* Compact project layout for medium screens */
-  .project-card {
-    padding: 1.25rem;
-  }
-
-  .nav-menu {
-    gap: 1rem;
+  .project-meta-group {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 }
 
-/* ==========================================================================
-   2. SMALL MOBILE SCREENS (< 480px)
-   ========================================================================== */
+/* Small Mobile Screens (< 480px) */
 @media (max-width: 480px) {
   .navbar {
     padding: 0.75rem 1rem;
@@ -468,7 +594,6 @@ body {
     font-size: 0.95rem;
   }
 
-  /* Stack partner cards vertically on tiny displays */
   .org-card {
     flex-direction: column;
     text-align: center;
@@ -487,3 +612,37 @@ body {
     font-size: 1.2rem;
   }
 }
+
+/* Accessibility Preferences */
+/* @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+} */
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --bg-light: #0f172a;
+    --white: #1e293b;
+    --text-dark: #f8fafc;
+    --text-light: #cbd5e1;
+    --border-color: #334155;
+    --primary-color: #60a5fa;
+    --accent-color: #93c5fd;
+    --accent-hover: #bfdbfe;
+  }
+
+  .category-badge {
+    background-color: var(--accent-color);
+    color: #0f172a;
+  }
+
+  .btn-primary {
+    color: #0f172a;
+  }
+} */
