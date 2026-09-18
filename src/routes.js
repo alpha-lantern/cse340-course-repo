@@ -1,17 +1,20 @@
 import express from 'express';
 
+// Main pages
 import { showHomePage } from './controllers/index.js';
 import { showOrganizationsPage } from './controllers/organizations.js';
 import { showProjectsPage } from './controllers/projects.js';
 import { showCategoriesPage } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
-
+// Detail pages using query parameters
 import { showProjectDetailsPage } from './controllers/projects.js';
+import { showOrganizationDetailsPage } from './controllers/organizations.js';
 
 const router = express.Router();
 
 router.get('/', showHomePage);
 router.get('/organizations', showOrganizationsPage);
+router.get('/organization/:id', showOrganizationDetailsPage);
 router.get('/projects', showProjectsPage);
 router.get('/project/:id', showProjectDetailsPage);
 router.get('/categories', showCategoriesPage);

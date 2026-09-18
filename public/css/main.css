@@ -453,6 +453,86 @@ body {
 }
 
 /* ==========================================================================
+   ORGANIZATION DETAIL PAGE STYLES
+   ========================================================================== */
+.org-detail {
+  max-width: 850px;
+  margin: 2rem auto;
+}
+
+/* Header Profile Card */
+.org-header-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-top: 6px solid var(--primary-color);
+  border-radius: 12px;
+  background-color: var(--white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  margin-bottom: 2.5rem;
+}
+
+.org-detail-logo {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.org-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.org-title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  color: var(--primary-color);
+  line-height: 1.25;
+}
+
+.org-email-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.org-email-link:hover {
+  text-decoration: underline;
+}
+
+/* Projects Section */
+.org-projects-section {
+  margin-bottom: 2rem;
+}
+
+.org-projects-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--text-dark);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--bg-light);
+}
+
+.no-projects-msg {
+  color: var(--text-light);
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.org-actions {
+  margin-top: 1.5rem;
+}
+
+/* ==========================================================================
    10. MEDIA QUERIES & RESPONSIVENESS
    ========================================================================== */
 
@@ -581,6 +661,25 @@ body {
   .project-meta-group {
     flex-direction: column;
     gap: 0.75rem;
+  }
+  .org-header-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .org-detail-logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .org-title {
+    font-size: 1.5rem;
+  }
+
+  .org-projects-title {
+    font-size: 1.2rem;
   }
 }
 

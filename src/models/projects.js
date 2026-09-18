@@ -17,7 +17,27 @@ const getAllProjects = async() => {
     const result = await db.query(query);
 
     return result.rows;
-} 
+};
+
+const getProjectsByOrganizationId = async (organizationId) => {
+    const query = `
+        SELECT
+          project_id,
+          organization_id,
+          title,
+          description,
+          location,
+          project_date
+        FROM service_projects
+        WHERE organization_id = $1
+        ORDER BY project_date;
+    `;
+      
+    const queryParams = [organizationId];
+    const result = await db.query(query, queryParams);
+
+    return result.rows;
+};
 
 // Retrieve the specified number of upcoming projects using a SQL JOIN
 async function getUpcomingProjects(number_of_projects) {
@@ -34,7 +54,7 @@ async function getUpcomingProjects(number_of_projects) {
     `;
     const result = await db.query(query, [number_of_projects]);
     return result.rows;
-}
+};
  
 // Retrieve a single project's details by its ID using a JOIN
 async function getProjectDetails(id) {
@@ -49,8 +69,9 @@ async function getProjectDetails(id) {
     `;
     const result = await db.query(query, [id]);
     return result.rows[0];
-}
+};
 
 export { getAllProjects,
-getUpcomingProjects,
-getProjectDetails };
+    getProjectsByOrganizationId,
+    getUpcomingProjects,
+    getProjectDetails };

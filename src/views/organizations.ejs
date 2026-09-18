@@ -4,13 +4,13 @@
     <p class="section-description">Here are a few of our partner organizations:</p>
     <ul class="org-grid">
         <% organizations.forEach(org => { %> 
-            <li class="org-card">
+            <li class="org-card"><a href="/organization/<%= org.organization_id %>"">
                 <img class="org-logo" src="/images/<%= org.logo_filename %>" alt="<%= org.name %> logo">
                 <div class="org-info">
                     <strong class="org-name"><%= org.name %></strong>
                     <a class="org-email" href="mailto:<%= org.contact_email %>"><%= org.contact_email %></a>
                 </div>
-            </li>
+            </a></li>
         <% }); %>
     </ul>
 </main>
