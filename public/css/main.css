@@ -316,45 +316,51 @@ body {
 .category-grid {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
   margin-top: 1.5rem;
+  padding: 0;
 }
 
+/* Entire card transformed into an anchor link */
 .category-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.25rem;
-  background-color: var(--bg-light);
+  padding: 1.25rem 1.5rem;
+  background-color: var(--white);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .category-card:hover {
-  background-color: var(--white);
   border-color: var(--accent-color);
-  box-shadow: 0 4px 8px rgba(29, 78, 216, 0.12);
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.1);
   transform: translateY(-2px);
 }
 
 .category-title {
   font-weight: 600;
   color: var(--text-dark);
-  font-size: 1rem;
+  font-size: 1.05rem;
+  transition: color 0.2s ease;
 }
 
-.category-badge {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background-color: var(--primary-color);
-  color: var(--white);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-weight: 600;
+.category-arrow {
+  color: var(--accent-color);
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+.category-card:hover .category-title {
+  color: var(--accent-color);
+}
+
+.category-card:hover .category-arrow {
+  transform: translateX(4px);
 }
 
 /* ==========================================================================
@@ -429,10 +435,53 @@ body {
   text-decoration: underline;
 }
 
-.project-actions {
+.project-actions, .category-actions {
   margin-top: 1rem;
   display: flex;
   gap: 1rem;
+}
+
+.project-tags {
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.category-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.category-tags .category {
+  display: inline-flex;
+}
+
+/* Tag Pill Buttons */
+.tag-btn {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent-color);
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.tag-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--white);
+  border-color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.tag-btn:active {
+  transform: scale(0.96);
 }
 
 /* ==========================================================================
@@ -530,6 +579,27 @@ body {
 
 .org-actions {
   margin-top: 1.5rem;
+}
+
+/* ==========================================================================
+   CATEGORY FILTERED PROJECTS STYLES
+   ========================================================================== */
+.category-projects-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.section-subtitle {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--bg-light);
+}
+
+.category-actions {
+  margin-top: 2rem;
 }
 
 /* ==========================================================================

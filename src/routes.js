@@ -9,6 +9,7 @@ import { testErrorPage } from './controllers/errors.js';
 // Detail pages using query parameters
 import { showProjectDetailsPage } from './controllers/projects.js';
 import { showOrganizationDetailsPage } from './controllers/organizations.js';
+import { showCategoryDetailsPage } from './controllers/categories.js';
 
 const router = express.Router();
 
@@ -18,6 +19,7 @@ router.get('/organization/:id', showOrganizationDetailsPage);
 router.get('/projects', showProjectsPage);
 router.get('/project/:id', showProjectDetailsPage);
 router.get('/categories', showCategoriesPage);
+router.get('/category/:id', showCategoryDetailsPage);
 
 // error-handling routes
 router.get('/test-error', testErrorPage);

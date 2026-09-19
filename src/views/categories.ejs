@@ -4,9 +4,11 @@
     <h2 class="hero-heading">Search Categories</h2>
     <ul class="category-grid">
         <% categories.forEach(category => { %>
-            <li class="category-card">
-                <span class="category-title"><%= category.name %></span>
-                <span class="category-badge">Filter</span>
+            <li>
+                <a href="/category/<%= category.category_id %>" class="category-card">
+                    <span class="category-title"><%= category.name %></span>
+                    <span class="category-arrow">→</span>
+                </a>
             </li>
         <% }); %>
     </ul>

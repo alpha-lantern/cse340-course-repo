@@ -1,4 +1,5 @@
 import { getUpcomingProjects, getProjectDetails } from '../models/projects.js';
+import { getCategoriesByProjectId } from '../models/categories.js';
 
 const NUMBER_OF_UPCOMING_PROJECTS = 5;
 // Controller function to handle the request for upcoming projects
@@ -14,10 +15,11 @@ const showProjectsPage = async (req, res) => {
 const showProjectDetailsPage = async (req, res) => {
     const projectId = req.params.id;
     const project = await getProjectDetails(projectId);
+    const categories = await getCategoriesByProjectId(projectId);
     // console.log('Retrieved project details:', project);
     const title = `Project Details:`;
 
-    res.render('project', { title, description: project.description, project });
+    res.render('project', { title, description: project.description, project, categories });
 };
 
 export { showProjectsPage, showProjectDetailsPage };

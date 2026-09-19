@@ -40,7 +40,7 @@ const getProjectsByOrganizationId = async (organizationId) => {
 };
 
 // Retrieve the specified number of upcoming projects using a SQL JOIN
-async function getUpcomingProjects(number_of_projects) {
+const getUpcomingProjects = async(number_of_projects) => {
     const query = `
         SELECT 
             p.project_id, p.title, p.description, p.project_date, p.location,
@@ -57,7 +57,7 @@ async function getUpcomingProjects(number_of_projects) {
 };
  
 // Retrieve a single project's details by its ID using a JOIN
-async function getProjectDetails(id) {
+const getProjectDetails = async(id) => {
     const query = `
         SELECT
             p.project_id, p.title, p.description, p.project_date, p.location,
@@ -71,7 +71,29 @@ async function getProjectDetails(id) {
     return result.rows[0];
 };
 
+const getProjectsByCategoryId = async(categoryId) => {
+    const query = `
+        SELECT 
+            sp.project_id,
+            sp.project_date,
+            sp.title,
+            c.category_id,
+            c.name
+        FROM service_projects sp
+        INNER JOIN project_categories pc 
+            ON sp.project_id = pc.project_id
+        INNER JOIN category c 
+            ON pc.category_id = c.category_id
+        WHERE c.category_id = $1;
+    `;
+    
+    const queryParams = [categoryId];
+    const result = await db.query(query, queryParams);
+    // Return all rows of the result set, or null if no rows are found
+    return result.rows;
+};
+
 export { getAllProjects,
     getProjectsByOrganizationId,
     getUpcomingProjects,
-    getProjectDetails };
+    getProjectDetails, getProjectsByCategoryId };

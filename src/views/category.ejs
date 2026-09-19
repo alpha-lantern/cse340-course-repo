@@ -1,21 +1,10 @@
 <%- include('partials/header') %>
-<main class="container org-detail">
-    <!-- General Page Title -->
+<main class="container">
     <h1 class="page-title"><%= title %></h1>
-    <!-- Organization Header Profile Card -->
-    <header class="org-header-card">
-        <img class="org-detail-logo" src="/images/<%= organizationDetails.logo_filename %>" alt="<%= organizationDetails.name %> logo">
-        <div class="org-header-info">
-            <!-- Organization Name updated to H2 -->
-            <h2 class="org-title"><%= organizationDetails.name %></h2>
-            <a class="org-email-link" href="mailto:<%= organizationDetails.contact_email %>">
-                ✉️ <%= organizationDetails.contact_email %>
-            </a>
-        </div>
-    </header>
+    <h2 class="hero-heading"><%= category.name %></h2>
     <!-- Projects List Section -->
-    <section class="org-projects-section">
-        <h3 class="org-projects-title">Projects by <%= organizationDetails.name %></h3>
+    <section class="category-projects-section">
+        <h3 class="section-subtitle">Featured Projects</h3>
         <% if (projects && projects.length > 0) { %>
             <ul class="project-list">
                 <% projects.forEach(project => { %>
@@ -41,11 +30,11 @@
                 <% }); %>
             </ul>
         <% } else { %>
-            <p class="no-projects-msg">No active projects found for this organization.</p>
+            <p class="no-projects-msg">No active projects found for this category.</p>
         <% } %>
     </section>
-    <div class="org-actions">
-        <a href="/organizations" class="btn-primary">← Back to Organizations</a>
+    <div class="category-actions">
+        <a href="/categories" class="btn-primary">← Back to Categories</a>
     </div>
 </main>
 <%- include('partials/footer') %>
