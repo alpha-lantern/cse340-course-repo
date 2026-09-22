@@ -19,8 +19,8 @@ const showCategoryDetailsPage = async (req, res) => {
     const title = "Projects for Category: ";
     const description = category ? `Now all the projects for ${category.name}` : 'No such category found.';
 
-    console.log(category);
-    console.log(projects);
+    // console.log(category);
+    // console.log(projects);
 
     res.render('category', { title, description, category, projects });
 
