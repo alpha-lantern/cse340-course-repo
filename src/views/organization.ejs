@@ -8,6 +8,7 @@
         <div class="org-header-info">
             <!-- Organization Name updated to H2 -->
             <h2 class="org-title"><%= organizationDetails.name %></h2>
+            <p><%= organizationDetails.description %></p>
             <a class="org-email-link" href="mailto:<%= organizationDetails.contact_email %>">
                 ✉️ <%= organizationDetails.contact_email %>
             </a>
@@ -46,6 +47,7 @@
     </section>
     <div class="org-actions">
         <a href="/organizations" class="btn-primary">← Back to Organizations</a>
+        <a href="/edit-organization/<%= organizationDetails.organization_id %>" class="btn-primary">Edit Organization</a>
     </div>
 </main>
 <%- include('partials/footer') %>

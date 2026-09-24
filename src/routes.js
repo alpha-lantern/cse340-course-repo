@@ -1,17 +1,12 @@
 import express from 'express';
 
-// Main pages
+// Single pages
 import { showHomePage } from './controllers/index.js';
-import { showOrganizationsPage } from './controllers/organizations.js';
-import { showProjectsPage } from './controllers/projects.js';
-import { showCategoriesPage } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
 // Detail pages using query parameters
-import { showProjectDetailsPage } from './controllers/projects.js';
-import { showOrganizationDetailsPage } from './controllers/organizations.js';
-import { showCategoryDetailsPage } from './controllers/categories.js';
-import { showNewOrganizationForm } from './controllers/organizations.js';
-import { processNewOrganizationForm } from './controllers/organizations.js';
+import { showCategoriesPage, showCategoryDetailsPage } from './controllers/categories.js';
+import { showProjectsPage, showProjectDetailsPage } from './controllers/projects.js';
+import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
 
 const router = express.Router();
 
@@ -25,7 +20,11 @@ router.get('/category/:id', showCategoryDetailsPage);
 // Route for new organization page
 router.get('/new-organization', showNewOrganizationForm);
 // Route to handle new organization form submission
-router.post('/new-organization', processNewOrganizationForm);
+router.post('/new-organization', organizationValidation, processNewOrganizationForm);
+// Route for edit organization page
+router.get('/edit-organization/:id', showEditOrganizationForm);
+// Route to handle edit organization form submission
+router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
 
 // error-handling routes
 router.get('/test-error', testErrorPage);
