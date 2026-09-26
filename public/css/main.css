@@ -801,6 +801,14 @@ body {
   .new-org {
     width: 100%;
   }
+  
+  .project-actions, 
+  .org-actions,
+  .category-actions {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 1rem;
+  }
 }
 
 /* Small Mobile Screens (< 480px) */

@@ -4,7 +4,7 @@ import express from 'express';
 import { showHomePage } from './controllers/index.js';
 import { testErrorPage } from './controllers/errors.js';
 // Detail pages using query parameters
-import { showCategoriesPage, showCategoryDetailsPage } from './controllers/categories.js';
+import { processAssignCategoriesForm, showAssignCategoriesForm, showCategoriesPage, showCategoryDetailsPage } from './controllers/categories.js';
 import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation } from './controllers/projects.js';
 import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
 
@@ -31,7 +31,11 @@ router.post('/edit-organization/:id', organizationValidation, processEditOrganiz
 // Route to handle new project page
 router.get('/new-project', showNewProjectForm);
 // Route to handle new project form submission
-router.post('/new-project', projectValidation, processNewProjectForm)
+router.post('/new-project', projectValidation, processNewProjectForm);
+
+// Routes to assign categories to project
+router.get('/project/:id/assign-categories', showAssignCategoriesForm);
+router.post('/project/:id/assign-categories', processAssignCategoriesForm);
 
 // error-handling routes
 router.get('/test-error', testErrorPage);
