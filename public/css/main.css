@@ -649,8 +649,196 @@ body {
 }
 
 /* ==========================================================================
+   FORMS & INPUT CONTROLS
+   ========================================================================== */
+.form-container {
+  max-width: 680px;
+  margin: 1.5rem auto 0 auto;
+  background-color: var(--white);
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+/* Two-column layout for side-by-side inputs (e.g., Date + Location) */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+/* Shared Input, Select, and Textarea Styles */
+.form-control {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.975rem;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  background-color: var(--white);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+select.form-control {
+  appearance: none;
+  background-color: var(--bg-light);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231f2937' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+/* Checkbox Grid for Assigning Categories */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.checkbox-card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 0.9rem;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.checkbox-card:hover {
+  border-color: var(--accent-color);
+  background-color: var(--white);
+}
+
+.checkbox-input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--accent-color);
+  cursor: pointer;
+}
+
+.checkbox-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+/* Button & Action Toolbar Layout */
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+button[type="submit"].btn-primary {
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  border-color: var(--text-light);
+}
+
+/* .btn-danger {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #dc2626;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+} */
+
+/* ==========================================================================
    10. MEDIA QUERIES & RESPONSIVENESS
    ========================================================================== */
+
+/* Responsive adjustments for forms */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 1.25rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .form-actions .btn-primary,
+  .form-actions .btn-secondary,
+  .form-actions .btn-danger {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 
 /* Tablet & Medium Screen Layouts (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -801,7 +989,7 @@ body {
   .new-org {
     width: 100%;
   }
-  
+
   .project-actions, 
   .org-actions,
   .category-actions {

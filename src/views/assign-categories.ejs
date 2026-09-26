@@ -1,25 +1,32 @@
 <%- include('partials/header') %>
-<main>
-  <h1><%= projectDetails.title %></h1>
+<main class="container">
+  <h1 class="page-title"><%= projectDetails.title %></h1>
+  <h2 class="hero-heading">Assign Categories</h2>
 
-  <h2>Assign Categories</h2>
-  <form action="/project/<%= projectId %>/assign-categories" method="POST">
-
+  <form action="/project/<%= projectId %>/assign-categories" method="POST" class="form-container">
     <div class="form-group">
-      <% categories.forEach(category => { %>
-        <div>
-          <input
-            type="checkbox"
-            id="category-<%= category.category_id %>"
-            name="categoryIds"
-            value="<%= category.category_id %>"
-            <%= assignedCategories.some(ac => ac.category_id === category.category_id) ? 'checked' : '' %>
-          />
-          <label for="category-<%= category.category_id %>"><%= category.name %></label>
-        </div>
-      <% }); %>
+      <label class="form-label">Select Categories</label>
+      <div class="checkbox-grid">
+        <% categories.forEach(category => { %>
+          <label class="checkbox-card" for="category-<%= category.category_id %>">
+            <input
+              type="checkbox"
+              id="category-<%= category.category_id %>"
+              name="categoryIds"
+              value="<%= category.category_id %>"
+              class="checkbox-input"
+              <%= assignedCategories.some(ac => ac.category_id === category.category_id) ? 'checked' : '' %>
+            />
+            <span class="checkbox-label"><%= category.name %></span>
+          </label>
+        <% }); %>
+      </div>
     </div>
-    <button type="submit">Update Categories</button>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-primary">Update Categories</button>
+      <a href="/project/<%= projectId %>" class="btn-secondary">Cancel</a>
+    </div>
   </form>
 </main>
 <%- include('partials/footer') %>
