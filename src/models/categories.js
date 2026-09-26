@@ -14,7 +14,7 @@ const getAllCategories = async() => {
 
 const getCategoryById = async(categoryId) => {
     const query = `
-        SELECT name
+        SELECT category_id, name
         FROM category
         WHERE category_id = $1;
     `;
@@ -69,4 +69,34 @@ const updateCategoryAssignments = async(projectId, categoryIds) => {
     }
 };
 
-export { getAllCategories, getCategoryById, getCategoriesByProjectId, updateCategoryAssignments }  
+const addCategory = async(name) => {
+    const query = `
+        INSERT INTO category (name)
+        VALUES ($1);
+    `;
+    
+    const queryParams = [name];
+    await db.query(query, queryParams);
+};
+
+const updateCategory = async(categoryId, name) => {
+    const query = `
+        UPDATE category
+        SET name = $2
+        WHERE category_id = $1
+        RETURNING category_id;
+    `;
+    const queryParams = [categoryId, name];
+    const result = await db.query(query, queryParams);
+    // Check if succeed
+    if (result.rows.length === 0) {
+        throw new Error('Category not found');
+    }
+
+    if (process.env.ENABLE_SQL_LOGGING === 'true') {
+        console.log('Updated category with ID:', categoryId);
+    }
+    return result.rows[0].category_id;
+}
+
+export { getAllCategories, getCategoryById, getCategoriesByProjectId, updateCategoryAssignments, addCategory, updateCategory }  

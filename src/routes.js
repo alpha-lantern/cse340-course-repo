@@ -5,7 +5,7 @@ import { showHomePage } from './controllers/index.js';
 import { testErrorPage } from './controllers/errors.js';
 // Detail pages using query parameters
 // Categories
-import { processAssignCategoriesForm, showAssignCategoriesForm, showCategoriesPage, showCategoryDetailsPage } from './controllers/categories.js';
+import { categoryValidation, processAssignCategoriesForm, processNewCategoryForm, showAssignCategoriesForm, showCategoriesPage, showCategoryDetailsPage, showNewCategoryForm, showEditCategoryForm, processEditCategoryForm } from './controllers/categories.js';
 // Projects
 import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
 // Organizations
@@ -42,6 +42,13 @@ router.post('/edit-project/:id', projectValidation, processEditProjectForm);
 // Routes to assign categories to project
 router.get('/project/:id/assign-categories', showAssignCategoriesForm);
 router.post('/project/:id/assign-categories', processAssignCategoriesForm);
+
+// Routes to add categories
+router.get('/new-category', showNewCategoryForm);
+router.post('/new-category', categoryValidation, processNewCategoryForm);
+// Routes to edit categories
+router.get('/edit-category/:id', showEditCategoryForm);
+router.post('/edit-category/:id', categoryValidation, processEditCategoryForm);
 
 // error-handling routes
 router.get('/test-error', testErrorPage);
