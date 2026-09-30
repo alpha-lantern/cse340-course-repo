@@ -3,13 +3,15 @@ import express from 'express';
 // Single pages
 import { showHomePage } from './controllers/index.js';
 import { testErrorPage } from './controllers/errors.js';
-// Detail pages using query parameters
+// Detail pages
 // Categories
 import { categoryValidation, processAssignCategoriesForm, processNewCategoryForm, showAssignCategoriesForm, showCategoriesPage, showCategoryDetailsPage, showNewCategoryForm, showEditCategoryForm, processEditCategoryForm } from './controllers/categories.js';
 // Projects
 import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
 // Organizations
 import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
+// Registration
+import { processLoginForm, processLogout, processUserRegistrationForm, requireLogin, showDashboard, showLoginForm, showUserRegistrationForm } from './controllers/users.js';
 
 const router = express.Router();
 
@@ -49,6 +51,18 @@ router.post('/new-category', categoryValidation, processNewCategoryForm);
 // Routes to edit categories
 router.get('/edit-category/:id', showEditCategoryForm);
 router.post('/edit-category/:id', categoryValidation, processEditCategoryForm);
+
+// User registration form
+router.get('/register', showUserRegistrationForm);
+router.post('/register', processUserRegistrationForm);
+
+// Login and logout routes
+router.get('/login', showLoginForm);
+router.post('/login', processLoginForm);
+router.get('/logout', processLogout);
+
+// Dashboard route
+router.get('/dashboard', requireLogin, showDashboard);
 
 // error-handling routes
 router.get('/test-error', testErrorPage);

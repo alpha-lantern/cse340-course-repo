@@ -908,7 +908,7 @@ button[type="submit"].btn-primary {
 
   /* Active JS Hamburger Mobile Menu State */
   .nav-menu.active {
-    max-height: 300px;
+    max-height: 500px;
   }
 
   .hamburger.active .bar:nth-child(1) {

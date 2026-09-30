@@ -30,7 +30,14 @@
             <li class="nav-item"><a class="nav-link" href="/organizations">Organizations</a></li>
             <li class="nav-item"><a class="nav-link" href="/projects">Projects</a></li>
             <li class="nav-item"><a class="nav-link" href="/categories">Categories</a></li>
+            <% if (isLoggedIn) { %>
+                <li class="nav-item"><a href="/logout" class="nav-link register-btn">Logout</a></li>
+            <% } else { %>
+                <li class="nav-item"><a href="/login" class="nav-link register-btn">Login</a></li>
+                <li class="nav-item"><a href="/register" class="nav-link register-btn">Register</a></li>
+            <% } %>
         </ul>
+
     </nav>
     <% const messages = flash(); %>
     <% Object.keys(messages).forEach(type => { %>
