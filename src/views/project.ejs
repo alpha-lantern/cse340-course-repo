@@ -34,8 +34,10 @@
 
         <div class="project-actions">
             <a href="/projects" class="btn-primary">← Back to Projects</a>
-            <a href="/edit-project/<%= project.project_id %>" class="btn-primary">Edit Project</a>
-            <a href="/project/<%= project.project_id %>/assign-categories" class="btn-primary">Edit Categories</a>
+            <% if (user && user.role_name === 'admin') { %>
+                <a href="/edit-project/<%= project.project_id %>" class="btn-primary">Edit Project</a>
+                <a href="/project/<%= project.project_id %>/assign-categories" class="btn-primary">Edit Categories</a>
+            <% } %>
         </div>
     </article>
 </main>
