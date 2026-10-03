@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+<main class="container">
+    <h1 class="page-title"><%= title %></h1>
+    <h2 class="hero-heading">Admin Dashboard</h2>
+
+    <% if (users.length === 0) { %>
+        <p class="no-projects-msg">No users found.</p>
+    <% } else { %>
+    <div class="table-container">
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Username / Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td class="user-name"><%= user.name %></td>
+                        <td class="user-email"><%= user.email %></td>
+                        <td>
+                            <span class="role-badge role-<%= user.role_name.toLowerCase() %>">
+                                <%= user.role_name %>
+                            </span>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <% } %>
+</main>
+<%- include('partials/footer') %>
+<%- include('partials/footer') %>

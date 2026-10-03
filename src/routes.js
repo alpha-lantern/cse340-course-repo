@@ -10,8 +10,8 @@ import { categoryValidation, processAssignCategoriesForm, processNewCategoryForm
 import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
 // Organizations
 import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
-// Registration
-import { processLoginForm, processLogout, processUserRegistrationForm, requireLogin, showDashboard, showLoginForm, showUserRegistrationForm, requireRole } from './controllers/users.js';
+// User Registration and Authentication
+import { processLoginForm, processLogout, processUserRegistrationForm, requireLogin, showDashboard, showLoginForm, showUserRegistrationForm, requireRole, showUsersPage } from './controllers/users.js';
 
 const router = express.Router();
 
@@ -63,6 +63,9 @@ router.get('/logout', processLogout);
 
 // Dashboard route
 router.get('/dashboard', requireLogin, showDashboard);
+
+// Users page route
+router.get('/users', requireRole('admin'), showUsersPage);
 
 // error-handling routes
 router.get('/test-error', testErrorPage);

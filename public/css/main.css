@@ -813,7 +813,95 @@ button[type="submit"].btn-primary {
 } */
 
 /* ==========================================================================
-   10. MEDIA QUERIES & RESPONSIVENESS
+   10. ADMIN DASHBOARD & TABLES
+   ========================================================================== */
+
+/* Responsive Table Wrapper */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.user-table thead tr {
+  background-color: var(--bg-light);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.user-table th {
+  padding: 1rem 1.25rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.user-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-dark);
+  vertical-align: middle;
+}
+
+/* Row Hover & Striping */
+.user-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.user-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.user-table tbody tr:hover {
+  background-color: rgba(29, 78, 216, 0.03);
+}
+
+.user-name {
+  font-weight: 600;
+}
+
+.user-email {
+  color: var(--text-light);
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+/* Role Badges */
+.role-badge {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  border: 1px solid var(--border-color);
+}
+
+/* Highlighted Admin Role */
+.role-badge.role-admin {
+  background-color: rgba(29, 78, 216, 0.1);
+  color: var(--accent-color);
+  border-color: rgba(29, 78, 216, 0.25);
+}
+
+/* ==========================================================================
+   11. MEDIA QUERIES & RESPONSIVENESS
    ========================================================================== */
 
 /* Responsive adjustments for forms */
