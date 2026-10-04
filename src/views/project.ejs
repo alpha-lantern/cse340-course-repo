@@ -23,20 +23,20 @@
         </a>
 
         <div class="project-tags">
-            <ul class="category-tags">
+            <ul class="category-grid">
                 <% categories.forEach(category => { %>
-                    <li class="category">
+                    <li>
                         <a href="/category/<%= category.category_id %>" class="tag-btn"><%= category.name %></a>
                     </li>
                 <% }); %>
             </ul>
         </div>
 
-        <div class="project-actions">
-            <a href="/projects" class="btn-primary">← Back to Projects</a>
+        <div class="actions-group">
+            <a href="/projects" class="btn btn-secondary">← Back to Projects</a>
             <% if (user && user.role_name === 'admin') { %>
-                <a href="/edit-project/<%= project.project_id %>" class="btn-primary">Edit Project</a>
-                <a href="/project/<%= project.project_id %>/assign-categories" class="btn-primary">Edit Categories</a>
+                <a href="/edit-project/<%= project.project_id %>" class="btn btn-admin">Edit Project</a>
+                <a href="/project/<%= project.project_id %>/assign-categories" class="btn btn-admin">Edit Categories</a>
             <% } %>
         </div>
     </article>

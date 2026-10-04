@@ -2,10 +2,24 @@
 <main class="container">
     <h1 class="page-title"><%= title %></h1>
     <h2 class="section-description">My Dashboard</h2>
-    <p>Name: <%= name %></p>
-    <p>Username: <%= email %></p>
-    <% if (user && user.role_name === 'admin') { %>
-        <a href="/users" class="btn-primary">Manage All Users</a>
-    <% } %>
+<div class="dashboard-card">
+        <div class="dashboard-info">
+            <div class="dashboard-info-item">
+                <span class="dashboard-info-label">Name</span>
+                <span class="dashboard-info-value"><%= name %></span>
+            </div>
+            <div class="dashboard-info-item">
+                <span class="dashboard-info-label">Username / Email</span>
+                <span class="dashboard-info-value"><%= email %></span>
+            </div>
+        </div>
+
+        <div class="actions-group">
+            <% if (user && user.role_name === 'admin') { %>
+                <a href="/users" class="btn btn-admin">Manage All Users</a>
+            <% } %>
+            <a href="/logout" class="btn btn-secondary">Log Out</a>
+        </div>
+    </div>
 </main>
 <%- include('partials/footer') %>

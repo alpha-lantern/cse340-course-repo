@@ -6,6 +6,10 @@
   --primary-color: #1e3a8a;      /* Deep Navy (Contrast ratio > 10:1 on white) */
   --accent-color: #1d4ed8;       /* Strong Royal Blue (Contrast ratio > 4.5:1 on white) */
   --accent-hover: #1e40af;       /* Hover Dark Blue */
+
+  /* Admin & Status Colors */
+  --admin-color: #6d28d9;        /* Deep Purple for Admin UI */
+  --admin-hover: #5b21b6;
   
   /* Text Colors */
   --text-dark: #1f2937;          /* Dark Charcoal */
@@ -93,25 +97,58 @@ body {
 }
 
 /* Shared Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
 .btn-primary {
-  display: inline-block;
   background-color: var(--accent-color);
   color: var(--white);
-  text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .btn-primary:hover {
   background-color: var(--accent-hover);
+  color: var(--white);
 }
 
-.btn-primary:active {
-  transform: scale(0.98);
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-light);
+  border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  border-color: var(--text-light);
+}
+
+.btn-admin {
+  background-color: var(--admin-color);
+  color: var(--white);
+}
+
+.btn-admin:hover {
+  background-color: var(--admin-hover);
+  color: var(--white);
 }
 
 /* ==========================================================================
@@ -451,10 +488,15 @@ body {
   text-decoration: underline;
 }
 
-.project-actions, .category-actions {
-  margin-top: 1rem;
-  display: flex;
+.actions-group {display: flex;
+  align-items: center;
   gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.actions-center {
+  justify-content: center;
 }
 
 .project-tags {
@@ -593,10 +635,6 @@ body {
   margin-top: 1rem;
 }
 
-.org-actions {
-  margin-top: 1.5rem;
-}
-
 /* ==========================================================================
    CATEGORY FILTERED PROJECTS STYLES
    ========================================================================== */
@@ -612,10 +650,6 @@ body {
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--bg-light);
-}
-
-.category-actions {
-  margin-top: 2rem;
 }
 
 /* ==========================================================================
@@ -759,15 +793,6 @@ select.form-control {
 }
 
 /* Button & Action Toolbar Layout */
-.form-actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1.75rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--border-color);
-}
 
 button[type="submit"].btn-primary {
   border: none;
@@ -912,18 +937,6 @@ button[type="submit"].btn-primary {
 
   .form-row {
     grid-template-columns: 1fr;
-  }
-
-  .form-actions {
-    flex-direction: column-reverse;
-    width: 100%;
-  }
-
-  .form-actions .btn-primary,
-  .form-actions .btn-secondary,
-  .form-actions .btn-danger {
-    width: 100%;
-    text-align: center;
   }
 }
 
@@ -1078,9 +1091,7 @@ button[type="submit"].btn-primary {
     width: 100%;
   }
 
-  .project-actions, 
-  .org-actions,
-  .category-actions {
+  .actions-group {
     display: grid;
     grid-template-columns: auto;
     gap: 1rem;
@@ -1115,37 +1126,3 @@ button[type="submit"].btn-primary {
     font-size: 1.2rem;
   }
 }
-
-/* Accessibility Preferences */
-/* @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-} */
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --bg-light: #0f172a;
-    --white: #1e293b;
-    --text-dark: #f8fafc;
-    --text-light: #cbd5e1;
-    --border-color: #334155;
-    --primary-color: #60a5fa;
-    --accent-color: #93c5fd;
-    --accent-hover: #bfdbfe;
-  }
-
-  .category-badge {
-    background-color: var(--accent-color);
-    color: #0f172a;
-  }
-
-  .btn-primary {
-    color: #0f172a;
-  }
-} */

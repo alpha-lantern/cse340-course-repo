@@ -12,9 +12,9 @@
             </li>
         <% }); %>
     </ul>
-    <div class="category-actions">
+    <div class="actions-group">
         <% if (user && user.role_name === 'admin') { %>
-            <a href="/new-category" class="btn-primary">+ Add Category</a>
+            <a href="/new-category" class="btn btn-admin">+ Add Category</a>
         <% } %>
     </div>
 </main>

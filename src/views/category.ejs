@@ -33,10 +33,10 @@
             <p class="no-projects-msg">No active projects found for this category.</p>
         <% } %>
     </section>
-    <div class="category-actions">
-        <a href="/categories" class="btn-primary">← Back to Categories</a>
+    <div class="actions-group">
+        <a href="/categories" class="btn btn-secondary">← Back to Categories</a>
         <% if (user && user.role_name === 'admin') { %>
-            <a href="/edit-category/<%= category.category_id %>" class="btn-primary">Edit Category</a>
+            <a href="/edit-category/<%= category.category_id %>" class="btn btn-admin">Edit Category</a>
         <% } %>
     </div>
 </main>
