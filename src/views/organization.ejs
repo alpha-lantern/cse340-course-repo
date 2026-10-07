@@ -48,8 +48,8 @@
     <div class="actions-group">
         <a href="/organizations" class="btn btn-secondary">← Back to Organizations</a>
         <% if (user && user.role_name === 'admin') { %>
-        <a href="/edit-organization/<%= organizationDetails.organization_id %>" class="btn btn-admin">Edit Organization</a>
-    <% } %>
+            <a href="/edit-organization/<%= organizationDetails.organization_id %>" class="btn btn-admin">Edit Organization</a>
+        <% } %>
     </div>
 </main>
 <%- include('partials/footer') %>
