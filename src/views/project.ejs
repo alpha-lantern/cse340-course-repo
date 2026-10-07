@@ -45,7 +45,7 @@
             <% } %>
             <% if (isAlreadySignedUp) { %>
                 <form action="/project/<%= project.project_id %>/remove-volunteer" method="POST">
-                    <button type="submit" class="btn btn-primary">Remove Volunteer</button>
+                    <button type="submit" class="btn btn-danger">Remove Volunteer</button>
                 </form>
             <% } %>
         </div>

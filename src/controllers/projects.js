@@ -169,15 +169,16 @@ const processSignupForProject = async (req, res) => {
 const processRemoveSignupFromProject = async (req, res) => {
     const userId = req.session.user.user_id;
     const projectId = req.params.id;
+    const backUrl = req.get('Referer') || '/projects'; // Fallback to /projects if Referer is not available
 
     try {
         await removeSignupForProject(userId, projectId);
-        req.flash('success', 'You have successfully removed your signup for this project.');
-        res.redirect(`/project/${projectId}`);
+        req.flash('info', 'You have been removed from the project.');
+        res.redirect(backUrl);
     } catch (error) {
         console.error('Error removing signup for project:', error);
         req.flash('error', 'An error occurred while removing your signup for the project. Please try again.');
-        res.redirect(`/project/${projectId}`);
+        res.redirect(backUrl);
     }
 };
 

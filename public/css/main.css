@@ -616,8 +616,9 @@ body {
 }
 
 /* Projects Section */
-.org-projects-section {
-  margin-bottom: 2rem;
+.projects-section {
+  margin: 2rem 0;
+  /* margin-bottom: 2rem; */
 }
 
 .org-projects-title {
@@ -819,13 +820,13 @@ button[type="submit"].btn-primary {
   border-color: var(--text-light);
 }
 
-/* .btn-danger {
+.btn-danger {
   display: inline-block;
   padding: 0.6rem 1.2rem;
   font-size: 0.9rem;
   font-weight: 600;
   color: #ffffff;
-  background-color: #dc2626;
+  background-color: #b91c1c;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -834,8 +835,8 @@ button[type="submit"].btn-primary {
 }
 
 .btn-danger:hover {
-  background-color: #b91c1c;
-} */
+  background-color: #9b1717;
+}
 
 /* ==========================================================================
    10. ADMIN DASHBOARD & TABLES

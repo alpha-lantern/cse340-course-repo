@@ -2,7 +2,7 @@
 <main class="container">
     <h1 class="page-title"><%= title %></h1>
     <h2 class="section-description">My Dashboard</h2>
-<div class="dashboard-card">
+    <div class="dashboard-card">
         <div class="dashboard-info">
             <div class="dashboard-info-item">
                 <span class="dashboard-info-label">Name:</span>
@@ -21,5 +21,35 @@
             <a href="/logout" class="btn btn-secondary">Log Out</a>
         </div>
     </div>
+    <% if (signedUpProjects !== undefined && signedUpProjects.length > 0) { %>
+        <div class="projects-section">
+            <h2 class="section-title">My Projects</h2>
+            <ul class="project-list">
+                <% signedUpProjects.forEach(project => { %>
+                    <li class="project-card">
+                        <div class="project-content">
+                            <p class="project-date">
+                                📅 <%= project.project_date.toLocaleDateString('es-ES', { 
+                                    weekday: 'long', 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                }) %>
+                            </p>
+                            <h3 class="project-title">
+                                <a href="/project/<%= project.project_id %>" class="project-link">
+                                    <%= project.title %></a>
+                                </h3>
+                            <p class="project-description"><%= project.description %></p>
+                        </div>
+                        
+                        <form action="/project/<%= project.project_id %>/remove-volunteer" method="POST">
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
 </main>
 <%- include('partials/footer') %>
