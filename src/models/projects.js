@@ -135,9 +135,52 @@ const updateProject = async(projectId, organizationId, title, description, locat
     return result.rows[0].project_id;
 };
 
+const getSignupProjectsByUserId = async (userId) => {
+    const query = `
+        SELECT 
+            sp.project_id,
+            sp.title,
+            sp.description,
+            sp.project_date,
+            sp.location
+        FROM service_projects sp
+        INNER JOIN volunteer_signups vs 
+            ON sp.project_id = vs.project_id
+        WHERE vs.user_id = $1
+    `;
+
+    const queryParams = [userId];
+    const result = await db.query(query, queryParams);
+    return result.rows;
+};
+
+const signupForProject = async (userId, projectId) => {
+    const query = `
+        INSERT INTO volunteer_signups (user_id, project_id)
+        VALUES ($1, $2)
+        RETURNING signup_id;
+    `;
+
+    const queryParams = [userId, projectId];
+    const result = await db.query(query, queryParams);
+    return result.rows[0].signup_id;
+};
+
+const removeSignupForProject = async (userId, projectId) => {
+    const query = `
+        DELETE FROM volunteer_signups
+        WHERE user_id = $1 AND project_id = $2;
+    `;
+
+    const queryParams = [userId, projectId];
+    await db.query(query, queryParams);
+};
+
 export { getAllProjects,
     getProjectsByOrganizationId,
     getUpcomingProjects,
     getProjectDetails, 
     getProjectsByCategoryId, 
-    createProject, updateProject };
+    createProject, updateProject, 
+    getSignupProjectsByUserId, 
+    signupForProject, removeSignupForProject };

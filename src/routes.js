@@ -7,7 +7,7 @@ import { testErrorPage } from './controllers/errors.js';
 // Categories
 import { categoryValidation, processAssignCategoriesForm, processNewCategoryForm, showAssignCategoriesForm, showCategoriesPage, showCategoryDetailsPage, showNewCategoryForm, showEditCategoryForm, processEditCategoryForm } from './controllers/categories.js';
 // Projects
-import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
+import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm, processSignupForProject, processRemoveSignupFromProject } from './controllers/projects.js';
 // Organizations
 import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, organizationValidation, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
 // User Registration and Authentication
@@ -32,6 +32,10 @@ router.post('/new-organization', requireRole('admin'), organizationValidation, p
 router.get('/edit-organization/:id', requireRole('admin'), showEditOrganizationForm);
 // Route to handle edit organization form submission
 router.post('/edit-organization/:id', requireRole('admin'), organizationValidation, processEditOrganizationForm);
+
+// Route to handle project volunteer signup
+router.post('/project/:id/volunteer', requireLogin, processSignupForProject);
+router.post('/project/:id/remove-volunteer', requireLogin, processRemoveSignupFromProject);
 
 // Route to handle new project page
 router.get('/new-project', requireRole('admin'), showNewProjectForm);

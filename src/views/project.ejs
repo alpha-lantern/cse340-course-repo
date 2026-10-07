@@ -38,6 +38,16 @@
                 <a href="/edit-project/<%= project.project_id %>" class="btn btn-admin">Edit Project</a>
                 <a href="/project/<%= project.project_id %>/assign-categories" class="btn btn-admin">Edit Categories</a>
             <% } %>
+            <% if (user && !isAlreadySignedUp) { %>
+                <form action="/project/<%= project.project_id %>/volunteer" method="POST">
+                    <button type="submit" class="btn btn-primary">Volunteer</button>
+                </form>
+            <% } %>
+            <% if (isAlreadySignedUp) { %>
+                <form action="/project/<%= project.project_id %>/remove-volunteer" method="POST">
+                    <button type="submit" class="btn btn-primary">Remove Volunteer</button>
+                </form>
+            <% } %>
         </div>
     </article>
 </main>
