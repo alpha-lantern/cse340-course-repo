@@ -83,6 +83,24 @@ CREATE TABLE users (
 );
 
 -- ========================================
+-- Volunteer Sign ups Table
+-- ========================================
+CREATE TABLE volunteer_signups (
+    signup_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    project_id INT NOT NULL,
+    signup_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user 
+        FOREIGN KEY (user_id) 
+        REFERENCES users (user_id) 
+        ON DELETE CASCADE,
+    CONSTRAINT fk_project 
+        FOREIGN KEY (project_id) 
+        REFERENCES service_projects (project_id) 
+        ON DELETE CASCADE
+);
+
+-- ========================================
 -- Insert sample data: Organization
 -- ========================================
 INSERT INTO organization (name, description, contact_email, logo_filename) 
